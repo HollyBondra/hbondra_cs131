@@ -23,5 +23,3 @@ Backpropagation
 Why are Neural Networks Important?
 
 The Future of Neural Networks
-
-## Works Cited
