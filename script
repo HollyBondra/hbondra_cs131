@@ -1,0 +1,139 @@
+## Machine Learning: The Process Behind Neural Networks
+Hello everyone, my name is Holly and today I’m going to explain the process behind neural networks. 
+We’ll look at what they are, the math behind them, and what their purpose is. 
+Hopefully, by the end of this presentation, the inner workings of this technology will fascinate you.
+
+## What is Machine Learning?
+First, let me explain what Machine learning is. Machine learning is a branch of artificial intelligence 
+where computers learn from data instead of following fixed rules like a traditional program.
+Traditional programs need a programmer to explain exactly what to do. However, a machine learning model, 
+especially a neural network, looks at examples and figures out the patterns on its own. 
+Over time, it improves because it keeps adjusting itself based on the data it sees. 
+This makes machine learning useful for complex tasks like recognizing images or predicting trends. 
+
+## What is a Neural Network?
+What is a neural network? To put it simply, a neural network is a computer system inspired by the brain. 
+But, instead of biological cells, it uses mathematical functions called neurons.
+Each neuron takes numbers in, performs a small calculation, and sends a result forward.
+The network learns by adjusting numbers called weights. These weights control how strongly one neuron affects the next. 
+When the network makes mistakes, it adjusts these weights, so it slowly becomes more accurate. 
+And as we add more layers of neurons, the network gains the ability to learn more abstract and complex patterns. 
+
+## Structure of a Neural Network
+A basic neural network has three kinds of layers: 
+The input layer, which receives data 
+One or more hidden layers, where the math happens 
+And, the output layer, which makes the final prediction 
+
+Mathematically, each layer does the same basic operation: 
+It takes the inputs, multiplies each input by a weight, adds a bias number, and then applies an activation function. 
+You can think of it as the Weighted sum equal to the  (input times weight) + bias for each neuron. 
+If a neuron has multiple inputs, you add them all together. 
+This weighted sum is often called ‘z’. Then an activation function processes that ‘z’ value, giving the neuron’s final output.
+Layer by layer, the data becomes more meaningful. 
+
+## Neurons: 1
+Now, to get a better understanding of artificial neurons, let’s compare them to biological neurons.
+
+Biological neurons use dendrites, a soma, and an axon to receive and send signals. They communicate using electrical and chemical impulses and are excellent at dealing with uncertainty. 
+
+Artificial neurons imitate this in a simple way: 
+They take inputs, multiply by weights, add a bias, and then pass the result through an activation function. This emulates the behavior of a biological neuron.
+Even though this is far simpler than a real brain, it allows neural networks to perform very sophisticated tasks, especially when many neurons work together. 
+
+## Neurons: 2
+Let’s break down what’s actually happening inside a single artificial neuron. 
+The first step is something called the weighted sum. Each input is multiplied by a corresponding weight. 
+You can think of the weights as to how important the network thinks each input is.
+All those products get added together, and then we add a bias term, b. The bias helps shift the output, 
+so the neuron isn’t forced to go through zero; it basically helps the model learn patterns more flexibly. 
+
+Once we have this value z, the neuron passes it through something called an activation function, written as f(z)
+This step is important, because without it, the neuron would just behave like a linear equation. 
+Activation functions introduce non-linearity, which is what lets neural networks learn complex patterns instead of just straight-line relationships. 
+So the final output of the neuron is: Output = f(z) 
+Putting this into words, the neuron is basically asking this question: 
+
+“What should my output be after applying a nonlinear transformation after given the inputs, the importance of each input, and the bias?”
+
+This process happens in every neuron, in every layer, and all of them together allow the network to learn from data. 
+
+## Activation Functions: 1
+Now, you might be wondering what activation functions are. Activation functions decide how a neuron reacts to the weighted sum.
+Their purpose is to determine if a neuron should be activated based on the inputs. 
+It decides if the information will be passed on to different layers, or if it should remain inactive. 
+There are two types of activation functions I’d like to go over.
+
+## Activation Functions: 2
+These two activation functions are ReLU, and Sigmoid functions.
+
+ReLU stands for Rectified Linear Unit. Its math is extremely simple: 
+If the number is negative, the output is zero. 
+If it’s positive, the output is the number itself. 
+
+It is commonly chosen for hidden layers because of its quick computation and works well because of this efficiency, helping deep networks learn with ease.
+As seen mathematically, ReLU of z equals the maximum of zero and z
+
+The sigmoid function is different. 
+It takes any number and transforms it into a value between 0 and 1, aiding in the program’s output for yes or no decisions
+It is not commonly used in hidden layers, compared to ReLU. It can slow down learning in deep layers, so it’s usually used only in output layers. 
+
+Mathematically, this can be seen as:
+1 divided by 1 plus e raised to the power of negative z. 
+This creates a smooth curve that’s perfect for probability-like outputs.
+
+## Activation Functions: 3
+Here, we can visually see how each of these functions appear as graphs
+ 
+Starting with the ReLU graph, you can see that all the values on the left side and the negative inputs are mapped to zero. That’s why the line stays flat at zero.
+Then, once the input becomes positive, the graph turns into a straight diagonal line. So ReLU either outputs zero, or it outputs the input value itself if it’s positive.
+
+Now on the right, we have the sigmoid function. This one has an S-shaped curve. For very negative inputs, the output is close to zero.
+For very positive inputs, the output levels off and approaches one. And in the middle, there is a smooth transition between zero and one.
+This shape is why sigmoid is often used when we want a probability-like output. 
+So visually, ReLU looks like a sharp bend at zero and then a straight line, while sigmoid looks like a smooth S-curve that gently rises from zero to one 
+
+## Backpropagation: 1
+Let’s talk about backpropagation. Backpropagation is the algorithm that teaches the neural network. 
+It measures the inaccuracy of the network’s prediction, determines which weight caused errors, and adjusts the weight to reduce errors.
+It is a process that learns from its mistakes. In the next slide, I will show the steps in how this algorithm works.
+
+## Backpropagation: 2
+First, the neuron starts by computing a weighted sum. This is found using the formulas we went over in the previous slides. 
+
+After passing through the activation function, we then measure the error in step 2
+We compare the prediction to the correct answer using a loss function noted by uppercase L.
+This gives us one number that tells us how wrong the network was.
+
+Then in step 3, we find out what caused the error. Backpropagation looks at how much each weight affected the mistake.
+This is done using chain rule and partial derivatives from calculus.
+We use a partial derivative because each weight affects the output individually, so we are finding the partial derivative of loss with respect to the neuron’s weight.
+The question we are asking is, “If I change just this one weight, how does the error change?”
+To answer that, we break the calculation into smaller pieces using the chain rule. The weight doesn’t affect the loss directly, 
+but instead affects our z, which then affects our output, which then affects our loss.
+So, from this, we find exactly how much that single weight contributed to the error.
+
+Now, on to step 4. Once the network knows which weights were responsible, it shifts them slightly
+The learning rate, represented by the Greek letter eta, controls how big the correction is.
+
+So overall, backpropagation is just
+making a prediction -> measuring the error -> figuring out why -> and then fixing the weights. 
+The network repeats this many times to gradually improve the network’s accuracy.
+
+## Why are Neural Networks Important?
+Now that we’ve discussed all the fun math, I’m going to talk about why neural networks are important.
+ 
+Neural networks matter because they allow machines to learn incredibly complex patterns directly from data, patterns too complicated to write as rules. 
+They make breakthroughs in pattern recognition, automate difficult tasks, and power many modern AI systems such as voice assistants, self-driving cars, and medical imaging tools. 
+Their flexibility makes them one of the most important technologies in AI today. 
+
+## The Future of Neural Networks
+In the future, neural networks will continue to improve. We’re seeing models that learn faster, use less data, and require less computing power.
+Neural networks will become more integrated into everyday life and more important in areas like medicine, robotics, and transportation. 
+As they gain better reasoning abilities, they’ll drive the next generation of artificial intelligence. 
+
+## Conclusion
+To conclude, neural networks work by combining simple mathematical steps.
+Through backpropagation, they learn from errors and become more accurate over time. 
+This combination of math and learning is what makes neural networks so powerful and so central to the future of AI.
+Thank you all for watching my presentation, and I hope you enjoyed it.
